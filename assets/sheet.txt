@@ -1,0 +1,32 @@
+sheet.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bar-corner
+  rotate: false
+  xy: 1, 1
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+bar-top
+  rotate: false
+  xy: 7, 7
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+bar-left
+  rotate: false
+  xy: 1, 7
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+bar-fill
+  rotate: false
+  xy: 7, 1
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
