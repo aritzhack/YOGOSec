@@ -9,7 +9,7 @@ import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 public class GameHtml extends GwtApplication {
 	@Override
 	public ApplicationListener getApplicationListener () {
-		return new Game();
+		return Game.INSTANCE;
 	}
 	
 	@Override

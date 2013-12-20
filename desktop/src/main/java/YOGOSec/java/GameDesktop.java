@@ -9,6 +9,6 @@ public class GameDesktop {
 	public static void main (String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.useGL20 = true;
-		new LwjglApplication(new Game(), config);
+		new LwjglApplication(Game.INSTANCE, config);
 	}
 }

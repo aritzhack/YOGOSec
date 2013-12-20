@@ -1,60 +1,56 @@
 package YOGOSec.core;
 
+import YOGOSec.core.render.ProgressBar;
 import YOGOSec.core.render.Render;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Game implements ApplicationListener {
-    Texture texture;
-    TextureAtlas atlas;
+    public static final Game INSTANCE;
+
+    static {
+        INSTANCE = new Game();
+    }
+
+    public TextureAtlas atlas;
     float elapsed;
-    Sprite corner, vertical, horizontal, bg, progress;
     private Render render;
+    private ProgressBar progressBar;
+    private float progress = 0.0f;
+
+    private Game() {
+
+    }
+
+    public Render getRender() {
+        return render;
+    }
 
     @Override
     public void create() {
-        this.render = new Render(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        this.texture = new Texture(Gdx.files.internal("libgdx-logo.png"));
+        this.render = new Render(4);
         this.atlas = new TextureAtlas("sheet.txt");
-        this.corner = atlas.createSprite("progressbar-corner");
-        this.vertical = atlas.createSprite("progressbar-vertical");
-        this.horizontal = atlas.createSprite("progressbar-horizontal");
-        this.bg = atlas.createSprite("progressbar-bg");
-        this.progress = atlas.createSprite("progressbar-progress");
+        this.progressBar = new ProgressBar(0, 0, this.render.getWidth(), 10, 1f);
     }
 
     @Override
     public void resize(int width, int height) {
+        this.render.resized(width, height);
+        Gdx.app.log("YOGOSec", "Camera size set to: " + width + "x" + height);
     }
 
     @Override
     public void render() {
         elapsed += Gdx.graphics.getDeltaTime();
+        progress+=0.01;
+
         this.render.start();
 
-        this.render.draw(texture, 100 + 100 * (float) Math.cos(elapsed), 100 + 100 * (float) Math.sin(elapsed));
-        this.drawProgressBar(0, 0, 15, 15, 0);
+        this.progressBar.setProgress((float) Math.abs(Math.sin(this.progress)));
+        this.progressBar.draw(this.render);
 
         this.render.end();
-    }
-
-    public void drawProgressBar(int x, int y, int width, int height, float progress) {
-
-        if (width < 10) width = 10;
-        if (height < 10) height = 10;
-
-        this.render.draw(this.corner, x, y);
-        this.corner.flip(true, false);
-        this.render.draw(this.corner, x, y + height - 5);
-        this.corner.flip(true, true);
-        this.render.draw(this.corner, x + width - 5, y);
-        this.corner.flip(false, true);
-        this.render.draw(this.corner, x + width - 5, y + height - 5);
-        this.corner.flip(false, true);
-
     }
 
     @Override
