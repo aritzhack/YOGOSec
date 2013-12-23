@@ -40,7 +40,7 @@ public class Render {
     }
 
     public void resized(int width, int height) {
-        this.camera.setToOrtho(false, width/this.scale, height/this.scale);
+        this.camera.setToOrtho(false, width / this.scale, height / this.scale);
         this.width = width;
         this.height = height;
     }
@@ -101,11 +101,11 @@ public class Render {
     }
 
     public int getWidth() {
-        return (int) (width/scale);
+        return (int) (width / scale);
     }
 
     public int getHeight() {
-        return (int) (height/scale);
+        return (int) (height / scale);
     }
 
     public SpriteBatch getBatch() {

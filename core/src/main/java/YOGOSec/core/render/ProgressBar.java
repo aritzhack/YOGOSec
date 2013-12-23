@@ -40,19 +40,19 @@ public class ProgressBar {
     private void update() {
 
         this.pixmap.setColor(fill);
-        this.pixmap.fillRectangle(MARGIN, MARGIN, this.width - MARGIN*2, this.height - MARGIN*2);
+        this.pixmap.fillRectangle(MARGIN, MARGIN, this.width - MARGIN * 2, this.height - MARGIN * 2);
 
         if (progress != 0) {
             this.pixmap.setColor(progressColor);
-            this.pixmap.fillRectangle(MARGIN, MARGIN, (int) ((this.width - MARGIN*2) * this.progress), this.height - MARGIN*2);
+            this.pixmap.fillRectangle(MARGIN, MARGIN, (int) ((this.width - MARGIN * 2) * this.progress), this.height - MARGIN * 2);
         }
 
         this.pixmap.setColor(border);
-        this.pixmap.fillRectangle(MARGIN, 0, this.width - MARGIN*2, MARGIN); // Top
-        this.pixmap.fillRectangle(0, MARGIN, MARGIN, this.height - MARGIN*2); // Left
+        this.pixmap.fillRectangle(MARGIN, 0, this.width - MARGIN * 2, MARGIN); // Top
+        this.pixmap.fillRectangle(0, MARGIN, MARGIN, this.height - MARGIN * 2); // Left
 
-        this.pixmap.fillRectangle(2, this.height - 2, this.width - MARGIN*2, MARGIN); // Bottom
-        this.pixmap.fillRectangle(this.width - MARGIN, MARGIN, MARGIN, this.height - MARGIN*2); // Right
+        this.pixmap.fillRectangle(2, this.height - 2, this.width - MARGIN * 2, MARGIN); // Bottom
+        this.pixmap.fillRectangle(this.width - MARGIN, MARGIN, MARGIN, this.height - MARGIN * 2); // Right
 
         this.pixmap.drawPixel(1, 1);
         this.pixmap.drawPixel(this.width - 2, 1);
