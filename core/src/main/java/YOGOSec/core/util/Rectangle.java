@@ -62,4 +62,14 @@ public class Rectangle {
     public int getHeight() {
         return height;
     }
+
+
+    public Rectangle setX(int x){
+        return new Rectangle(x, this.y, this.width, this.height);
+    }
+
+    public Rectangle setY(int y){
+        return new Rectangle(this.x, y, this.width, this.height);
+    }
+
 }

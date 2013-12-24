@@ -1,6 +1,8 @@
 package YOGOSec.core.gui;
 
 import YOGOSec.core.render.Render;
+import YOGOSec.core.util.Point;
+import YOGOSec.core.util.Rectangle;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -11,56 +13,74 @@ import java.util.List;
  */
 public abstract class GUI implements InputListener{
 
-    private final List<GUIComponent> components = Lists.newArrayList();
-
-    public abstract List<GUIComponent> getComponents();
+    protected final List<GUIComponent> components = Lists.newArrayList();
 
     public void render(Render render) {
-        for (GUIComponent component : this.getComponents()) {
+        for (GUIComponent component : this.components) {
             component.render(render);
         }
     }
 
+    @Override
     public boolean keyDown(int keycode){
         for(GUIComponent component : this.components) component.keyDown(keycode);
         return false;
     }
 
+    @Override
     public boolean keyUp(int keycode){
         for(GUIComponent component : this.components) component.keyUp(keycode);
         return false;
     }
 
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    @Override
+    public boolean touchDown(Point point, int pointer, int button) {
         for(GUIComponent component : this.components) {
-            if(component.getBounds().contains(screenX, screenY)) component.touchDown(screenX, screenY, pointer, button);
+            component.touchDown(point, pointer, button);
         }
         return false;
     }
 
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    @Override
+    public boolean touchUp(Point point, int pointer, int button) {
         for(GUIComponent component : this.components) {
-            if(component.getBounds().contains(screenX, screenY)) component.touchUp(screenX, screenY, pointer, button);
+            component.touchUp(point, pointer, button);
         }
         return false;
     }
 
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
+    @Override
+    public boolean touchDragged(Point point, int pointer) {
         for(GUIComponent component : this.components) {
-            if(component.getBounds().contains(screenX, screenY)) component.touchDragged(screenX, screenY, pointer);
+            component.touchDragged(point, pointer);
         }
         return false;
     }
 
-    public boolean mouseMoved(int screenX, int screenY) {
+    @Override
+    public boolean mouseMoved(Point point) {
         for(GUIComponent component : this.components) {
-            if(component.getBounds().contains(screenX, screenY)) component.mouseMoved(screenX, screenY);
+            if(component.getBounds().contains(point)) component.mouseMoved(point);
         }
         return false;
     }
 
+    @Override
     public boolean scrolled(int amount) {
         for(GUIComponent component : this.components) component.scrolled(amount);
         return false;
+    }
+
+    public void addComponent(GUIComponent component) {
+        this.components.add(component);
+    }
+
+    public static Button getCenteredButton(int x, int y, int windowWidth, int windiowHeight, int width, int height, String text, IActionListener listener){
+        return new Button(new Rectangle(x+windowWidth*2, y+windiowHeight/2, width, height), text, listener);
+    }
+
+    public static Button getCenteredButton(int windowWidth, int windiowHeight, int width, int height, String text, IActionListener listener){
+        return GUI.getCenteredButton(0, 0, windowWidth, windiowHeight, width, height, text, listener);
+
     }
 }

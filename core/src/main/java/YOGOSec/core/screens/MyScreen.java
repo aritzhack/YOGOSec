@@ -25,7 +25,7 @@ public abstract class MyScreen extends GUI {
     }
 
     public void render(Render render) {
-
+        super.render(render);
     }
 
     public void resize(int width, int height) {
