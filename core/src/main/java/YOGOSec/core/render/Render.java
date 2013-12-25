@@ -105,7 +105,7 @@ public class Render {
         this.batch.draw(texture, x, y, width, height);
     }
 
-    public void setFontColor(Color color){
+    public void setFontColor(Color color) {
         this.fontBig.setColor(color);
         this.fontSmall.setColor(color);
     }
@@ -128,7 +128,7 @@ public class Render {
 
     private void drawCenteredString(BitmapFont font, String text, int x, int y) {
         BitmapFont.TextBounds bounds = font.getBounds(text);
-        this.drawString(font, text, (int) (x - (bounds.width / 2)), (int) (y + (bounds.height / 2)));
+        this.drawString(font, text, (int) (x - (bounds.width / 2)), (int) (y + (font.getLineHeight() / 2)));
     }
 
     public void drawBigCenteredString(String text, int x, int y) {
