@@ -16,10 +16,11 @@ before_install:
     - source ~/.android-sdk-installer/env
 
     # Create and start emulator
+	- android update sdk --no-ui --obsolete --force
     - echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a
     - emulator -avd test -no-skin -no-audio -no-window &
 
 before_script:
   - wait_for_emulator
 
-script: "mvn clean install -P ${PROFILE} -Dandroid.device=test"
+script: "mvn clean install -P $PROFILE -Dandroid.device=test"
