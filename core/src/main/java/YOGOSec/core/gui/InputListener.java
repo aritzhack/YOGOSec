@@ -1,6 +1,6 @@
 package YOGOSec.core.gui;
 
-import YOGOSec.core.util.Point;
+import YOGOSec.core.util.Point2i;
 
 /**
  * @author Aritz Lopez
@@ -12,13 +12,13 @@ public interface InputListener {
 
     public boolean keyUp(int keycode);
 
-    public boolean touchDown(Point point, int pointer, int button);
+    public boolean touchDown(Point2i point, int pointer, int button);
 
-    public boolean touchUp(Point point, int pointer, int button);
+    public boolean touchUp(Point2i point, int pointer, int button);
 
-    public boolean touchDragged(Point point, int pointer);
+    public boolean touchDragged(Point2i point, int pointer);
 
-    public boolean mouseMoved(Point point);
+    public boolean mouseMoved(Point2i point);
 
     public boolean scrolled(int amount);
 }

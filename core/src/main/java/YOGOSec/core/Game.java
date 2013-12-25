@@ -1,7 +1,7 @@
 package YOGOSec.core;
 
+import YOGOSec.core.gui.ProgressBar;
 import YOGOSec.core.input.Input;
-import YOGOSec.core.render.ProgressBar;
 import YOGOSec.core.render.Render;
 import YOGOSec.core.screens.MainMenuScreen;
 import YOGOSec.core.screens.MyScreen;
@@ -79,11 +79,11 @@ public class Game implements ApplicationListener {
         // atlas.dispose(); TODO Uncomment when sheet is used
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return this.render.getWidth();
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return this.render.getHeight();
     }
 }
