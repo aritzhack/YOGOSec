@@ -6,5 +6,20 @@ env:
     - PROFILE=android
     - PROFILE=desktop
     - PROFILE=html
+    
+before_install:
+  # Install base Android SDK
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq libstdc++6:i386 lib32z1
+    - export COMPONENTS=build-tools-18.1.0,android-16,sysimg-16,extra-android-support
+    - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/master/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
+    - source ~/.android-sdk-installer/env
 
-script: "mvn clean install -P ${PROFILE}"
+    # Create and start emulator
+    - echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a
+    - emulator -avd test -no-skin -no-audio -no-window &
+
+before_script:
+  - wait_for_emulator
+
+script: "mvn clean install -P ${PROFILE}" -Dandroid.device=test
