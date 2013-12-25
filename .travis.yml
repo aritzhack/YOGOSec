@@ -22,4 +22,4 @@ before_install:
 before_script:
   - wait_for_emulator
 
-script: "mvn clean install -P ${PROFILE}" -Dandroid.device=test
+script: "mvn clean install -P ${PROFILE} -Dandroid.device=test"
