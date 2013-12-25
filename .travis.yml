@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - oraclejdk7
+env:
+  matrix:
+    - PROFILE=android
+    - PROFILE=desktop
+    - PROFILE=html
+
+script: "mvn clean install -P ${PROFILE}"
