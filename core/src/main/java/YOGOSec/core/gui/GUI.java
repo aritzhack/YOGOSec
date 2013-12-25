@@ -75,12 +75,9 @@ public abstract class GUI implements InputListener{
         this.components.add(component);
     }
 
-    public static Button getCenteredButton(int x, int y, int windowWidth, int windiowHeight, int width, int height, String text, IActionListener listener){
-        return new Button(new Rectangle(x+windowWidth*2, y+windiowHeight/2, width, height), text, listener);
-    }
-
-    public static Button getCenteredButton(int windowWidth, int windiowHeight, int width, int height, String text, IActionListener listener){
-        return GUI.getCenteredButton(0, 0, windowWidth, windiowHeight, width, height, text, listener);
-
+    public void onScreenResized(int width, int height) {
+        for (GUIComponent component : this.components) {
+            component.onGUIResized(width, height);
+        }
     }
 }

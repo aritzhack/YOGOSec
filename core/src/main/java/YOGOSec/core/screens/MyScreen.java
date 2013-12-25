@@ -32,6 +32,7 @@ public abstract class MyScreen extends GUI {
         this.camera.setToOrtho(false, width, height);
         this.width = width;
         this.height = height;
+        this.onScreenResized(width, height);
     }
 
     public void pause() {
