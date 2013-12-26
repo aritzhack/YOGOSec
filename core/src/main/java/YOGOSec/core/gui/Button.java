@@ -21,6 +21,7 @@ public class Button extends GUIComponent {
     private boolean pressed, hovered;
     private int pressPointer = -1;
     private YUpPixmap pixmap;
+    private Texture texture;
 
     public Button(Rectanglef bounds, String text, IActionListener listener) {
         super(bounds);
@@ -33,12 +34,13 @@ public class Button extends GUIComponent {
         pixmap.fillRectangle(this.bounds.getX().intValue(), this.bounds.getY().intValue(), this.bounds.getWidth().intValue(), this.bounds.getHeight().intValue());
         pixmap.setColor(Color.BLACK);
         Gdx.app.log("YOGOSec", "Created button: " + this.bounds);
+        this.texture = new Texture(this.pixmap);
     }
 
     @Override
     public void render(Render render) {
         super.render(render);
-        render.draw(new Texture(pixmap), 0, 0);
+        render.draw(this.texture, 0, 0);
         render.drawBigCenteredString(this.text, (int) (this.bounds.getX() + (this.bounds.getWidth() / 2)), (int) (this.bounds.getY() + (this.bounds.getHeight() / 2)));
     }
 
@@ -85,8 +87,16 @@ public class Button extends GUIComponent {
     }
 
     @Override
+    public void dispose() {
+        super.dispose();
+        this.pixmap.dispose();
+        this.texture.dispose();
+    }
+
+    @Override
     public void onGUIResized(int width, int height) {
         super.onGUIResized(width, height);
+        this.pixmap.dispose();
         this.pixmap = new YUpPixmap(width, height, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.RED);
         pixmap.fillRectangle(this.bounds.getX().intValue(), this.bounds.getY().intValue(), this.bounds.getWidth().intValue(), this.bounds.getHeight().intValue());

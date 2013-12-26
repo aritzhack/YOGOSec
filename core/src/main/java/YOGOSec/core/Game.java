@@ -19,7 +19,6 @@ public class Game implements ApplicationListener {
     private MyScreen screen;
     private Render render;
     private ProgressBar progressBar;
-    private Input input;
 
     private Game() {
 
@@ -31,11 +30,13 @@ public class Game implements ApplicationListener {
 
     @Override
     public void create() {
-        this.input = new Input(this);
         this.render = new Render();
         this.setScreen(new MainMenuScreen(this));
+
         // this.atlas = new TextureAtlas("sheet.txt"); TODO Uncomment when sheet is used
-        Gdx.input.setInputProcessor(this.input);
+
+        Input input = new Input(this);
+        Gdx.input.setInputProcessor(input);
     }
 
     @Override
@@ -54,15 +55,6 @@ public class Game implements ApplicationListener {
         this.render.end();
     }
 
-
-    public void setScreen(MyScreen screen) {
-        this.screen = screen;
-    }
-
-    public MyScreen getScreen() {
-        return screen;
-    }
-
     @Override
     public void pause() {
         if (this.screen != null) this.screen.pause();
@@ -77,6 +69,14 @@ public class Game implements ApplicationListener {
     public void dispose() {
         if (this.screen != null) this.screen.dispose();
         // atlas.dispose(); TODO Uncomment when sheet is used
+    }
+
+    public MyScreen getScreen() {
+        return screen;
+    }
+
+    public void setScreen(MyScreen screen) {
+        this.screen = screen;
     }
 
     public int getWidth() {

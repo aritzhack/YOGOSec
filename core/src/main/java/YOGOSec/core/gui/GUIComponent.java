@@ -112,4 +112,8 @@ public abstract class GUIComponent implements InputListener {
     public void setHeight(float height) {
         this.relativeBounds = this.relativeBounds.setHeight(height);
     }
+
+    public void dispose() {
+        
+    }
 }
