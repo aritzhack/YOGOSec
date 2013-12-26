@@ -21,7 +21,7 @@ before_install:
     fi
 
 before_script:
-  - if [ "$PROFILE" = "android" ]
+  - if [ "$PROFILE" = "android" ];
     then
         ./wait_for_emulator;
     fi
