@@ -46,9 +46,9 @@ public class Button extends GUIComponent {
 
     @Override
     public boolean touchDown(Point2i point, int pointer, int button) {
-        Gdx.app.debug("YOGOSec", "Touched at: " + point);
+        Gdx.app.log("YOGOSec", "Touched at: " + point);
         if (this.bounds.contains(point, true)) {
-            Gdx.app.debug("YOGOSec", "Touched down!");
+            Gdx.app.log("YOGOSec", "Touched down!");
             this.pressed = true;
             this.pressPointer = pointer;
             return true;
