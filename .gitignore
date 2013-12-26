@@ -7,3 +7,4 @@ target
 rebel.xml
 hs_err_pid*.log
 gen
+android/libs
