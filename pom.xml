@@ -50,12 +50,6 @@
 				<module>android</module>
 			</modules>
 		</profile>
-		<profile>
-			<id>html</id>
-			<modules>
-				<module>html</module>
-			</modules>
-		</profile>
 	</profiles>
 
 	<modules>
