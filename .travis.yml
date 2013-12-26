@@ -10,20 +10,20 @@ env:
 before_install:
   - if [ "$PROFILE" = "android" ];
     then
-      sudo apt-get update -qq;
-      sudo apt-get install -qq libstdc++6:i386 lib32z1;
-      export COMPONENTS=build-tools-18.1.0,android-15,android-16,sysimg-16,extra-android-support;
-      curl -L https://raw.github.com/embarkmobile/android-sdk-installer/master/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS;
-      source ~/.android-sdk-installer/env;
-  
-      echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a;
-      emulator -avd test -no-skin -no-audio -no-window;
+        sudo apt-get update -qq;
+        sudo apt-get install -qq libstdc++6:i386 lib32z1;
+        export COMPONENTS=build-tools-18.1.0,android-15,android-16,sysimg-16,extra-android-support;
+        curl -L https://raw.github.com/embarkmobile/android-sdk-installer/master/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS;
+        source ~/.android-sdk-installer/env;
+
+        echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a;
+        emulator -avd test -no-skin -no-audio -no-window;
     fi
 
 before_script:
   - if [ "$PROFILE" = "android" ]
     then
-      ./wait_for_emulator;
+        ./wait_for_emulator;
     fi
 
 script: "mvn clean install -P $PROFILE -Dandroid.device=test"
