@@ -25,6 +25,6 @@ before_script:
     then
       ./wait_for_emulator;
     fi
-	
+
 script: "mvn clean install -P $PROFILE -Dandroid.device=test"
 
