@@ -38,7 +38,7 @@ public class ProgressBar extends GUIComponent {
     private void update() {
 
         this.pixmap.setColor(fill);
-        this.pixmap.fillRectangle(MARGIN, MARGIN, (int) (this.getWidth() - MARGIN * 2), (int) (this.getHeight() - MARGIN * 2));
+        this.pixmap.fillRectangle(MARGIN, MARGIN, (int) (getWidth() - MARGIN * 2), (int) (getHeight() - MARGIN * 2));
 
         if (progress != 0) {
             this.pixmap.setColor(progressColor);
@@ -46,21 +46,21 @@ public class ProgressBar extends GUIComponent {
         }
 
         this.pixmap.setColor(border);
-        this.pixmap.fillRectangle(MARGIN, 0, (int) (this.getWidth() - MARGIN * 2), MARGIN); // Top
-        this.pixmap.fillRectangle(0, MARGIN, MARGIN, (int) (this.getHeight() - MARGIN * 2)); // Left
+        this.pixmap.fillRectangle(MARGIN, 0, (int) (getWidth() - MARGIN * 2), MARGIN); // Top
+        this.pixmap.fillRectangle(0, MARGIN, MARGIN, (int) (getHeight() - MARGIN * 2)); // Left
 
-        this.pixmap.fillRectangle(2, (int) (this.getHeight() - 2), (int) (this.getWidth() - MARGIN * 2), MARGIN); // Bottom
-        this.pixmap.fillRectangle((int) (this.getWidth() - MARGIN), MARGIN, MARGIN, (int) (this.getHeight() - MARGIN * 2)); // Right
+        this.pixmap.fillRectangle(MARGIN, (int) (getHeight() - MARGIN), (int) (getWidth() - MARGIN * 2), MARGIN); // Bottom
+        this.pixmap.fillRectangle((int) (getWidth() - MARGIN), MARGIN, MARGIN, (int) (getHeight() - MARGIN * 2)); // Right
 
         this.pixmap.drawPixel(1, 1);
-        this.pixmap.drawPixel((int) (this.getWidth() - 2), 1);
-        this.pixmap.drawPixel(1, (int) (this.getHeight() - 2));
-        this.pixmap.drawPixel((int) (this.getWidth() - 2), (int) (this.getHeight() - 2));
+        this.pixmap.drawPixel((int) (getWidth() - MARGIN), 1);
+        this.pixmap.drawPixel(1, (int) (getHeight() - MARGIN));
+        this.pixmap.drawPixel((int) (getWidth() - MARGIN), (int) (getHeight() - MARGIN));
 
-        this.pixmap.drawPixel(2, 2);
-        this.pixmap.drawPixel((int) (this.getWidth() - 3), 2);
-        this.pixmap.drawPixel(2, (int) (this.getHeight() - 3));
-        this.pixmap.drawPixel((int) (this.getWidth() - 3), (int) (this.getHeight() - 3));
+        this.pixmap.drawPixel(MARGIN, MARGIN);
+        this.pixmap.drawPixel((int) (getWidth() - 3), MARGIN);
+        this.pixmap.drawPixel(MARGIN, (int) (getHeight() - 3));
+        this.pixmap.drawPixel((int) (getWidth() - 3), (int) (getHeight() - 3));
 
         this.texture = new Texture(this.pixmap);
     }
