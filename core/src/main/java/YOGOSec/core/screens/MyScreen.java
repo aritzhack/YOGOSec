@@ -2,7 +2,6 @@ package YOGOSec.core.screens;
 
 import YOGOSec.core.Game;
 import YOGOSec.core.gui.GUI;
-import YOGOSec.core.render.Render;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
@@ -22,10 +21,6 @@ public abstract class MyScreen extends GUI {
         this.width = Gdx.graphics.getWidth();
         this.height = Gdx.graphics.getHeight();
         this.resize(this.width, this.height);
-    }
-
-    public void render(Render render) {
-        super.render(render);
     }
 
     public void resize(int width, int height) {
