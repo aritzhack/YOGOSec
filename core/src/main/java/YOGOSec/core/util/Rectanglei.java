@@ -23,16 +23,6 @@ public class Rectanglei implements Rectangle<Integer> {
         this.height = p2.getY() - p1.getY();
     }
 
-    @Override
-    public Rectanglei setSize(Integer width, Integer height) {
-        return new Rectanglei(this.x, this.y, width, height);
-    }
-
-    @Override
-    public Rectanglei setPos(Integer x, Integer y) {
-        return new Rectanglei(x, y, this.width, this.height);
-    }
-
     public Rectanglei translate(int dx, int dy) {
         return new Rectanglei(this.x + dx, this.y + dy, this.width, this.height);
     }
@@ -42,42 +32,8 @@ public class Rectanglei implements Rectangle<Integer> {
     }
 
     @Override
-    public boolean contains(Point<? extends Number> point) {
-        return this.contains(point, false);
-    }
-
-    @Override
-    public boolean contains(Point<? extends Number> point, boolean yUp) {
-        return this.contains(point.getX().intValue(), point.getY().intValue(), yUp);
-    }
-
-    public boolean contains(int x, int y) {
-        return this.contains(x, y, false);
-    }
-
-    public boolean contains(int x, int y, boolean yUp) {
-        return (!yUp && this.x >= x && this.y >= y && this.x + this.width <= x && this.y + this.height <= y) ||
-                this.x >= x && this.y >= y && this.x + this.width <= x && this.y - this.height <= y;
-    }
-
-    @Override
     public Integer getX() {
         return x;
-    }
-
-    @Override
-    public Integer getY() {
-        return y;
-    }
-
-    @Override
-    public Integer getWidth() {
-        return width;
-    }
-
-    @Override
-    public Integer getHeight() {
-        return height;
     }
 
     @Override
@@ -86,8 +42,44 @@ public class Rectanglei implements Rectangle<Integer> {
     }
 
     @Override
+    public Integer getY() {
+        return y;
+    }
+
+    @Override
     public Rectanglei setY(Integer y) {
         return new Rectanglei(this.x, y, this.width, this.height);
+    }
+
+    @Override
+    public Rectanglei setPos(Integer x, Integer y) {
+        return new Rectanglei(x, y, this.width, this.height);
+    }
+
+    @Override
+    public boolean contains(Point<? extends Number> point, boolean yDown) {
+        return this.contains(point.getX().intValue(), point.getY().intValue(), yDown);
+    }
+
+    @Override
+    public boolean contains(Point<? extends Number> point) {
+        return this.contains(point, false);
+    }
+
+    @Override
+    public boolean contains(Integer px, Integer py, boolean yDown) {
+        return (!yDown && px >= this.x && py >= this.y && px <= this.x + this.width && py <= this.y + this.height) ||
+                (yDown && px >= this.x && py >= y + height && px <= this.x + this.width && py <= y);
+    }
+
+    @Override
+    public boolean contains(Integer px, Integer py) {
+        return this.contains(px, py, false);
+    }
+
+    @Override
+    public Integer getWidth() {
+        return width;
     }
 
     @Override
@@ -96,10 +88,19 @@ public class Rectanglei implements Rectangle<Integer> {
     }
 
     @Override
+    public Integer getHeight() {
+        return height;
+    }
+
+    @Override
     public Rectanglei setHeight(Integer height) {
         return new Rectanglei(this.x, this.y, this.width, height);
     }
 
+    @Override
+    public Rectanglei setSize(Integer width, Integer height) {
+        return new Rectanglei(this.x, this.y, width, height);
+    }
 
     @Override
     public String toString() {

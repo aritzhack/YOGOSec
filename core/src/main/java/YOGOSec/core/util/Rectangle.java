@@ -8,14 +8,13 @@ public interface Rectangle<T> extends Point<T> {
 
     public T getWidth();
 
-    public T getHeight();
-
     public Rectangle<T> setWidth(T width);
+
+    public T getHeight();
 
     public Rectangle<T> setHeight(T height);
 
     public Rectangle<T> setSize(T width, T height);
-
 
     @Override
     public Rectangle<T> setX(T x);
@@ -25,8 +24,12 @@ public interface Rectangle<T> extends Point<T> {
 
     public Rectangle<T> setPos(T x, T y);
 
-    public boolean contains(Point<? extends Number> point, boolean yUp);
+    public boolean contains(Point<? extends Number> point, boolean yDown);
 
     public boolean contains(Point<? extends Number> point);
+
+    public boolean contains(T px, T py, boolean yDown);
+
+    public boolean contains(T px, T py);
 
 }

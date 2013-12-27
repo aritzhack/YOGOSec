@@ -5,7 +5,6 @@ import YOGOSec.core.render.Render;
 import YOGOSec.core.render.YUpPixmap;
 import YOGOSec.core.util.Point2i;
 import YOGOSec.core.util.Rectanglef;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -33,7 +32,6 @@ public class Button extends GUIComponent {
         pixmap.setColor(Color.RED);
         pixmap.fillRectangle(this.bounds.getX().intValue(), this.bounds.getY().intValue(), this.bounds.getWidth().intValue(), this.bounds.getHeight().intValue());
         pixmap.setColor(Color.BLACK);
-        Gdx.app.log("YOGOSec", "Created button: " + this.bounds);
         this.texture = new Texture(this.pixmap);
     }
 
@@ -46,9 +44,7 @@ public class Button extends GUIComponent {
 
     @Override
     public boolean touchDown(Point2i point, int pointer, int button) {
-        Gdx.app.log("YOGOSec", "Touched at: " + point);
-        if (this.bounds.contains(point, true)) {
-            Gdx.app.log("YOGOSec", "Touched down!");
+        if (this.bounds.contains(point)) {
             this.pressed = true;
             this.pressPointer = pointer;
             return true;
@@ -58,10 +54,9 @@ public class Button extends GUIComponent {
 
     @Override
     public boolean touchUp(Point2i point, int pointer, int button) {
-        if (this.bounds.contains(point, true)) {
+        if (this.bounds.contains(point)) {
             this.pressed = false;
             this.hovered = false;
-            Gdx.app.debug("YOGOSec", "Clicked with text: " + this.text);
             if (this.listener != null) listener.actionPerformed(this);
             return true;
         }
@@ -101,5 +96,7 @@ public class Button extends GUIComponent {
         pixmap.setColor(Color.RED);
         pixmap.fillRectangle(this.bounds.getX().intValue(), this.bounds.getY().intValue(), this.bounds.getWidth().intValue(), this.bounds.getHeight().intValue());
         pixmap.setColor(Color.BLACK);
+        this.texture.dispose();
+        this.texture = new Texture(this.pixmap);
     }
 }

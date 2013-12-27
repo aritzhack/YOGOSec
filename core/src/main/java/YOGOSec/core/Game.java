@@ -5,6 +5,7 @@ import YOGOSec.core.input.Input;
 import YOGOSec.core.render.Render;
 import YOGOSec.core.screens.MainMenuScreen;
 import YOGOSec.core.screens.MyScreen;
+import YOGOSec.core.util.Log;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 
@@ -43,7 +44,7 @@ public class Game implements ApplicationListener {
     public void resize(int width, int height) {
         this.render.resized(width, height);
         if (this.screen != null) this.screen.resize(width, height);
-        Gdx.app.log("YOGOSec", "Camera size set to: " + width + "x" + height);
+        Log.log("Window size set to: " + width + "x" + height);
     }
 
     @Override

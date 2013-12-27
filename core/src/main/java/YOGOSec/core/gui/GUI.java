@@ -1,8 +1,8 @@
 package YOGOSec.core.gui;
 
 import YOGOSec.core.render.Render;
+import YOGOSec.core.util.Log;
 import YOGOSec.core.util.Point2i;
-import com.badlogic.gdx.Gdx;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -82,7 +82,7 @@ public abstract class GUI implements InputListener {
     }
 
     public void dispose() {
-        Gdx.app.log("YOGOSec", "Disposing...");
+        Log.log("Disposing...");
         for(GUIComponent component : this.components) {
             component.dispose();
         }

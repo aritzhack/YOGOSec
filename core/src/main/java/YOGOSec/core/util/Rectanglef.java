@@ -35,10 +35,6 @@ public class Rectanglef implements Rectangle<Float> {
         return new Rectanglef(this.x, this.y, (int) (this.width * sc), (int) (this.height * sy));
     }
 
-    public boolean contains(float x, float y) {
-        return this.contains(x, y, false);
-    }
-
     public Float getX() {
         return x;
     }
@@ -63,21 +59,24 @@ public class Rectanglef implements Rectangle<Float> {
     }
 
     @Override
-    public Rectanglef setSize(Float width, Float height) {
-        return new Rectanglef(this.x, this.y, width, height);
-    }
-
     public boolean contains(Point<? extends Number> point, boolean yUp) {
         return this.contains(point.getX().floatValue(), point.getY().floatValue(), yUp);
     }
 
-    public boolean contains(float x, float y, boolean yUp) {
-        return (!yUp && this.x >= x && this.y >= y && this.x + this.width <= x && this.y + this.height <= y) ||
-                this.x >= x && this.y >= y && this.x + this.width <= x && this.y - this.height <= y;
-    }
-
+    @Override
     public boolean contains(Point<? extends Number> point) {
         return this.contains(point, false);
+    }
+
+    @Override
+    public boolean contains(Float px, Float py, boolean yDown) {
+        return (!yDown && px >= this.x && py >= this.y && px <= this.x + this.width && py <= this.y + this.height) ||
+                (yDown && px >= this.x && py >= y + height && px <= this.x + this.width && py <= y);
+    }
+
+    @Override
+    public boolean contains(Float x, Float y) {
+        return this.contains(x, y, false);
     }
 
     public Float getWidth() {
@@ -89,13 +88,18 @@ public class Rectanglef implements Rectangle<Float> {
         return new Rectanglef(this.x, this.y, width, this.height);
     }
 
+    public Float getHeight() {
+        return height;
+    }
+
     @Override
     public Rectanglef setHeight(Float height) {
         return new Rectanglef(this.x, this.y, this.width, height);
     }
 
-    public Float getHeight() {
-        return height;
+    @Override
+    public Rectanglef setSize(Float width, Float height) {
+        return new Rectanglef(this.x, this.y, width, height);
     }
 
     @Override
