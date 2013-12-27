@@ -4,6 +4,7 @@ import YOGOSec.core.Game;
 import YOGOSec.core.render.Render;
 import YOGOSec.core.util.Point2i;
 import YOGOSec.core.util.Rectanglef;
+import YOGOSec.core.util.Util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -31,7 +32,7 @@ public class Button extends GUIComponent {
     @Override
     public void render(Render render) {
         super.render(render);
-        render.draw(this.pressed ? this.texturePressed : this.hovered ? this.textureHovered : this.textureNormal, this.bounds.getX(), this.bounds.getY());
+        render.draw(this.pressed ? this.texturePressed : this.hovered && !Util.isAndroid() ? this.textureHovered : this.textureNormal, this.bounds.getX(), this.bounds.getY());
         render.drawBigCenteredString(this.text, (int) (this.bounds.getX() + (this.bounds.getWidth() / 2)), (int) (this.bounds.getY() + (this.bounds.getHeight() / 2)));
     }
 
