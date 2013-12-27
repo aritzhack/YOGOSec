@@ -16,9 +16,7 @@ public abstract class GUI implements InputListener {
     protected final List<GUIComponent> components = Lists.newArrayList();
 
     public void render(Render render) {
-        for (GUIComponent component : this.components) {
-            component.render(render);
-        }
+        for (GUIComponent component : this.components) component.render(render);
     }
 
     @Override
@@ -35,33 +33,25 @@ public abstract class GUI implements InputListener {
 
     @Override
     public boolean touchDown(Point2i point, int pointer, int button) {
-        for (GUIComponent component : this.components) {
-            component.touchDown(point, pointer, button);
-        }
+        for (GUIComponent component : this.components) component.touchDown(point, pointer, button);
         return false;
     }
 
     @Override
     public boolean touchUp(Point2i point, int pointer, int button) {
-        for (GUIComponent component : this.components) {
-            component.touchUp(point, pointer, button);
-        }
+        for (GUIComponent component : this.components) component.touchUp(point, pointer, button);
         return false;
     }
 
     @Override
     public boolean touchDragged(Point2i point, int pointer) {
-        for (GUIComponent component : this.components) {
-            component.touchDragged(point, pointer);
-        }
+        for (GUIComponent component : this.components) component.touchDragged(point, pointer);
         return false;
     }
 
     @Override
     public boolean mouseMoved(Point2i point) {
-        for (GUIComponent component : this.components) {
-            if (component.getBounds().contains(point)) component.mouseMoved(point);
-        }
+        for (GUIComponent component : this.components) component.mouseMoved(point);
         return false;
     }
 
@@ -76,15 +66,11 @@ public abstract class GUI implements InputListener {
     }
 
     public void onScreenResized(int width, int height) {
-        for (GUIComponent component : this.components) {
-            component.onGUIResized(width, height);
-        }
+        for (GUIComponent component : this.components) component.onGUIResized(width, height);
     }
 
     public void dispose() {
         Log.log("Disposing...");
-        for(GUIComponent component : this.components) {
-            component.dispose();
-        }
+        for (GUIComponent component : this.components) component.dispose();
     }
 }
