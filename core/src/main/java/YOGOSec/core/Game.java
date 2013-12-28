@@ -36,8 +36,7 @@ public class Game implements ApplicationListener {
 
         // this.atlas = new TextureAtlas("sheet.txt"); TODO Uncomment when sheet is used
 
-        Input input = new Input(this);
-        Gdx.input.setInputProcessor(input);
+        Gdx.input.setInputProcessor(new Input(this));
     }
 
     @Override
