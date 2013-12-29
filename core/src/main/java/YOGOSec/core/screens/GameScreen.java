@@ -13,7 +13,7 @@ import com.badlogic.gdx.Gdx;
 public class GameScreen extends MyScreen {
 
     public static final int MIN_MARGIN = 10;
-    public static final float RECOMMENDED_SQUARE_INCHES = 1f / 1f;
+    public static final float RECOMMENDED_SQUARE_CMS = 1f / 1f;
     public final int xSquares, ySquares;
     public final int SQUARE_SIZE;
     public int xMargin, yMargin;
@@ -41,7 +41,6 @@ public class GameScreen extends MyScreen {
     }
 
     private void calculateBestMargin() {
-        this.xMargin = this.yMargin = MIN_MARGIN;
         int remainingWidth = this.game.getWidth() - (this.xSquares * this.SQUARE_SIZE);
         int remainingHeight = this.game.getHeight() - (this.ySquares * this.SQUARE_SIZE);
 
@@ -54,7 +53,7 @@ public class GameScreen extends MyScreen {
     }
 
     public static Point2i recommendedSquareAmount(int x, int y) {
-        int pxAmount = (int) (RECOMMENDED_SQUARE_INCHES / (1 / Gdx.graphics.getPpcX()));
+        int pxAmount = (int) (RECOMMENDED_SQUARE_CMS / (1 / Gdx.graphics.getPpcX()));
         return new Point2i((x - MIN_MARGIN) / (pxAmount + MIN_MARGIN), (y - MIN_MARGIN) / (pxAmount + MIN_MARGIN));
     }
 
