@@ -15,21 +15,21 @@ public class GameScreen extends MyScreen {
     public static final float MIN_MARGIN_IN_CM = 3f/20f;
     public static final float RECOMMENDED_SQUARE_CMS = 1f;
     public final int xSquares, ySquares;
-    public final int SQUARE_SIZE;
-    public int xMargin, yMargin;
+    public final int squareSize;
+    public final Point2i margins;
 
     public GameScreen(Game game, Point2i squareAmount) {
         super(game);
         this.xSquares = squareAmount.getX();
         this.ySquares = squareAmount.getY();
         final int minMargin = cmToPx(MIN_MARGIN_IN_CM);
-        this.SQUARE_SIZE = Math.min((this.game.getWidth() - (xSquares + 1) * minMargin) / xSquares, (this.game.getHeight() - (ySquares + 1) * minMargin) / ySquares);
+        this.squareSize = Math.min((this.game.getWidth() - (xSquares + 1) * minMargin) / xSquares, (this.game.getHeight() - (ySquares + 1) * minMargin) / ySquares);
 
-        this.calculateBestMargin();
+        this.margins = this.calculateBestMargin();
         this.init();
     }
 
-    public static int cmToPx(float cm) {
+    private static int cmToPx(float cm) {
         return (int) (cm / (1 / Gdx.graphics.getPpcX()));
     }
 
@@ -45,12 +45,11 @@ public class GameScreen extends MyScreen {
         }
     }
 
-    private void calculateBestMargin() {
-        int remainingWidth = this.game.getWidth() - (this.xSquares * this.SQUARE_SIZE);
-        int remainingHeight = this.game.getHeight() - (this.ySquares * this.SQUARE_SIZE);
+    private Point2i calculateBestMargin() {
+        int remainingWidth = this.game.getWidth() - (this.xSquares * this.squareSize);
+        int remainingHeight = this.game.getHeight() - (this.ySquares * this.squareSize);
 
-        this.xMargin = remainingWidth / (xSquares + 1);
-        this.yMargin = remainingHeight / (ySquares + 1);
+        return new Point2i(remainingWidth / (this.xSquares + 1), remainingHeight / (this.ySquares + 1));
     }
 
     public static Point2i recommendedSquareAmount() {

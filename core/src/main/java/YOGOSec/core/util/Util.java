@@ -16,4 +16,13 @@ public class Util {
     public static boolean isDesktop() {
         return Gdx.app.getType() == Application.ApplicationType.Desktop;
     }
+
+    public static float round(float value, int decimalPlaces) {
+        return (float) Util.round((double) value, decimalPlaces);
+    }
+
+    public static double round(double value, int decimalPlaces) {
+        double rounder = Math.pow(10, decimalPlaces);
+        return Math.round(value*rounder) / rounder;
+    }
 }

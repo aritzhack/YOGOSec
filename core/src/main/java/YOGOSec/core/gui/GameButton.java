@@ -39,10 +39,10 @@ public class GameButton extends Button {
 
     private static Rectanglef getButtonBounds(GameScreen screen, int x, int y) {
         return new Rectanglef(
-                x * (screen.SQUARE_SIZE + screen.xMargin) + screen.xMargin,
-                y * (screen.SQUARE_SIZE + screen.yMargin) + screen.yMargin,
-                screen.SQUARE_SIZE,
-                screen.SQUARE_SIZE);
+                x * (screen.squareSize + screen.margins.getX()) + screen.margins.getX(),
+                y * (screen.squareSize + screen.margins.getY()) + screen.margins.getY(),
+                screen.squareSize,
+                screen.squareSize);
     }
 
     public static enum ButtonState {
