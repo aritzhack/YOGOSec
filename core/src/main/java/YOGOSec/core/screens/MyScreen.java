@@ -49,4 +49,12 @@ public abstract class MyScreen extends GUI {
     public Game getGame() {
         return game;
     }
+
+    public void onOpening(MyScreen oldScreen) {
+
+    }
+
+    public void onClosing(MyScreen newScreen) {
+
+    }
 }

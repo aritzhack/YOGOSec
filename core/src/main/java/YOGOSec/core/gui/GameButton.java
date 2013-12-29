@@ -14,6 +14,7 @@ public class GameButton extends Button {
         private final GameScreen screen;
         private final int x;
         private final int y;
+        private ButtonState state = ButtonState.NORMAL;
 
         public GameButtonListener(GameScreen screen, int x, int y) {
             this.screen = screen;
@@ -21,9 +22,13 @@ public class GameButton extends Button {
             this.y = y;
         }
 
+        public void setState(ButtonState state) {
+            this.state = state;
+        }
+
         @Override
         public void actionPerformed(GUIComponent sender) {
-            this.screen.buttonClicked(x, y);
+            this.screen.buttonClicked(x, y, this.state);
         }
     }
 
@@ -34,9 +39,13 @@ public class GameButton extends Button {
 
     private static Rectanglef getButtonBounds(GameScreen screen, int x, int y) {
         return new Rectanglef(
-                x * (screen.SQUARE_SIZE + GameScreen.MARGIN) + GameScreen.MARGIN,
-                y * (screen.SQUARE_SIZE + GameScreen.MARGIN) + GameScreen.MARGIN,
+                x * (screen.SQUARE_SIZE + screen.xMargin) + screen.xMargin,
+                y * (screen.SQUARE_SIZE + screen.yMargin) + screen.yMargin,
                 screen.SQUARE_SIZE,
                 screen.SQUARE_SIZE);
+    }
+
+    public static enum ButtonState {
+        NORMAL, LIT, UPGRADE
     }
 }

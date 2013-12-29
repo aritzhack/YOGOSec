@@ -35,7 +35,9 @@ public class MainMenuScreen extends MyScreen {
     private final IActionListener startGame = new IActionListener() {
         @Override
         public void actionPerformed(GUIComponent sender) {
-            MainMenuScreen.this.game.setScreen(new GameScreen(MainMenuScreen.this.game, 10, 10));
+            MainMenuScreen.this.game.setScreen(new GameScreen(MainMenuScreen.this.game));
         }
     };
+
+
 }

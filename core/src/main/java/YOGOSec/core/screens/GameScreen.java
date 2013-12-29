@@ -3,6 +3,8 @@ package YOGOSec.core.screens;
 import YOGOSec.core.Game;
 import YOGOSec.core.gui.GameButton;
 import YOGOSec.core.util.Log;
+import YOGOSec.core.util.Point2i;
+import com.badlogic.gdx.Gdx;
 
 /**
  * @author Aritz Lopez
@@ -10,17 +12,24 @@ import YOGOSec.core.util.Log;
  */
 public class GameScreen extends MyScreen {
 
-    public static final int MARGIN = 10;
+    public static final int MIN_MARGIN = 10;
+    public static final float RECOMMENDED_SQUARE_INCHES = 1f / 1f;
     public final int xSquares, ySquares;
     public final int SQUARE_SIZE;
+    public int xMargin, yMargin;
 
-    public GameScreen(Game game, int xSquares, int ySquares) {
+    public GameScreen(Game game, Point2i squareAmount) {
         super(game);
-        this.xSquares = xSquares;
-        this.ySquares = ySquares;
-        this.SQUARE_SIZE = Math.min((this.game.getWidth() - (xSquares+1) * MARGIN) / xSquares, (this.game.getHeight() - (ySquares+1) * MARGIN) / ySquares);
+        this.xSquares = squareAmount.getX();
+        this.ySquares = squareAmount.getY();
+        this.SQUARE_SIZE = Math.min((this.game.getWidth() - (xSquares + 1) * MIN_MARGIN) / xSquares, (this.game.getHeight() - (ySquares + 1) * MIN_MARGIN) / ySquares);
 
+        this.calculateBestMargin();
         this.init();
+    }
+
+    public GameScreen(Game game) {
+        this(game, GameScreen.recommendedSquareAmount());
     }
 
     private void init() {
@@ -31,6 +40,24 @@ public class GameScreen extends MyScreen {
         }
     }
 
+    private void calculateBestMargin() {
+        this.xMargin = this.yMargin = MIN_MARGIN;
+        int remainingWidth = this.game.getWidth() - (this.xSquares * this.SQUARE_SIZE);
+        int remainingHeight = this.game.getHeight() - (this.ySquares * this.SQUARE_SIZE);
+
+        this.xMargin = remainingWidth / (xSquares + 1);
+        this.yMargin = remainingHeight / (ySquares + 1);
+    }
+
+    public static Point2i recommendedSquareAmount() {
+        return GameScreen.recommendedSquareAmount(Game.INSTANCE.getWidth(), Game.INSTANCE.getHeight());
+    }
+
+    public static Point2i recommendedSquareAmount(int x, int y) {
+        int pxAmount = (int) (RECOMMENDED_SQUARE_INCHES / (1 / Gdx.graphics.getPpcX()));
+        return new Point2i((x - MIN_MARGIN) / (pxAmount + MIN_MARGIN), (y - MIN_MARGIN) / (pxAmount + MIN_MARGIN));
+    }
+
     public void start() {
 
     }
@@ -39,8 +66,21 @@ public class GameScreen extends MyScreen {
 
     }
 
-    public void buttonClicked(int x, int y) {
-        Log.log("Button (" + x + ", " + y + ") clicked!");
+    public void buttonClicked(int x, int y, GameButton.ButtonState state) {
+        Log.log("Button (" + x + ", " + y + ") clicked: " + state + "!");
     }
 
+    @Override
+    public void onOpening(MyScreen oldScreen) {
+        super.onOpening(oldScreen);
+
+        this.game.getProxy().setResizable(false);
+    }
+
+    @Override
+    public void onClosing(MyScreen newScreen) {
+        super.onClosing(newScreen);
+
+        this.game.getProxy().setResizable(false);
+    }
 }

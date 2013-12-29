@@ -14,6 +14,7 @@ public class GameDesktop {
         config.addIcon("assets/icons/icon128.png", Files.FileType.Internal);
         config.addIcon("assets/icons/icon32.png", Files.FileType.Internal);
         config.addIcon("assets/icons/icon16.png", Files.FileType.Internal);
+        Game.INSTANCE.setProxy(new DesktopProxy(Game.INSTANCE));
 		new LwjglApplication(Game.INSTANCE, config);
 	}
 }
