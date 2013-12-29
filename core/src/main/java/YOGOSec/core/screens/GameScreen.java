@@ -12,8 +12,8 @@ import com.badlogic.gdx.Gdx;
  */
 public class GameScreen extends MyScreen {
 
-    public static final int MIN_MARGIN = 10;
-    public static final float RECOMMENDED_SQUARE_CMS = 1f / 1f;
+    public static final float MIN_MARGIN_IN_CM = 3f/20f;
+    public static final float RECOMMENDED_SQUARE_CMS = 1f;
     public final int xSquares, ySquares;
     public final int SQUARE_SIZE;
     public int xMargin, yMargin;
@@ -22,10 +22,15 @@ public class GameScreen extends MyScreen {
         super(game);
         this.xSquares = squareAmount.getX();
         this.ySquares = squareAmount.getY();
-        this.SQUARE_SIZE = Math.min((this.game.getWidth() - (xSquares + 1) * MIN_MARGIN) / xSquares, (this.game.getHeight() - (ySquares + 1) * MIN_MARGIN) / ySquares);
+        final int minMargin = cmToPx(MIN_MARGIN_IN_CM);
+        this.SQUARE_SIZE = Math.min((this.game.getWidth() - (xSquares + 1) * minMargin) / xSquares, (this.game.getHeight() - (ySquares + 1) * minMargin) / ySquares);
 
         this.calculateBestMargin();
         this.init();
+    }
+
+    public static int cmToPx(float cm) {
+        return (int) (cm / (1 / Gdx.graphics.getPpcX()));
     }
 
     public GameScreen(Game game) {
@@ -53,8 +58,9 @@ public class GameScreen extends MyScreen {
     }
 
     public static Point2i recommendedSquareAmount(int x, int y) {
-        int pxAmount = (int) (RECOMMENDED_SQUARE_CMS / (1 / Gdx.graphics.getPpcX()));
-        return new Point2i((x - MIN_MARGIN) / (pxAmount + MIN_MARGIN), (y - MIN_MARGIN) / (pxAmount + MIN_MARGIN));
+        int pxAmount = GameScreen.cmToPx(RECOMMENDED_SQUARE_CMS);
+        final int minMargin = GameScreen.cmToPx(MIN_MARGIN_IN_CM);
+        return new Point2i((x - minMargin) / (pxAmount + minMargin), (y - minMargin) / (pxAmount + minMargin));
     }
 
     public void start() {
