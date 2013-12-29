@@ -26,28 +26,29 @@ public abstract class GUIComponent implements InputListener {
 
         this.absolute = !(centerX || centerY || relativeWidth || relativeHeight);
 
+        if (!this.absolute) {
+            this.relativeBounds = this.relativeBounds.setPos(Math.abs(this.relativeBounds.getX()), Math.abs(this.relativeBounds.getY()));
+            this.relativeBounds = this.relativeBounds.setSize(Math.abs(this.relativeBounds.getWidth()), Math.abs(this.relativeBounds.getHeight()));
+        }
 
-        this.relativeBounds = this.relativeBounds.setPos(Math.abs(this.relativeBounds.getX()), Math.abs(this.relativeBounds.getY()));
-        this.relativeBounds = this.relativeBounds.setSize(Math.abs(this.relativeBounds.getWidth()), Math.abs(this.relativeBounds.getHeight()));
         this.updateBounds();
     }
 
     protected void updateBounds() {
         if (this.absolute) {
-            if (this.bounds == null) this.bounds = this.relativeBounds;
-            return;
+            this.bounds = this.relativeBounds;
+        } else {
+            final int gameWidth = Game.INSTANCE.getRender().getWidth();
+            final int gameHeight = Game.INSTANCE.getRender().getHeight();
+
+            float width = this.relativeBounds.getWidth() * (this.relativeWidth ? gameWidth : 1);
+            float height = this.relativeBounds.getHeight() * (this.relativeHeight ? gameHeight : 1);
+
+            float x = gameWidth * this.relativeBounds.getX() - (this.centerX ? width / 2 : 0);
+            float y = gameHeight * this.relativeBounds.getY() - (this.centerY ? height / 2 : 0);
+
+            this.bounds = new Rectanglef(x, y, width, height);
         }
-
-        final int gameWidth = Game.INSTANCE.getRender().getWidth();
-        final int gameHeight = Game.INSTANCE.getRender().getHeight();
-
-        float width = this.relativeBounds.getWidth() * (this.relativeWidth ? gameWidth : 1);
-        float height = this.relativeBounds.getHeight() * (this.relativeHeight ? gameHeight : 1);
-
-        float x = gameWidth * this.relativeBounds.getX() - (this.centerX ? width / 2 : 0);
-        float y = gameHeight * this.relativeBounds.getY() - (this.centerY ? height / 2 : 0);
-
-        this.bounds = new Rectanglef(x, y, width, height);
     }
 
     public void render(Render render) {
