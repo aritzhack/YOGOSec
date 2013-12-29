@@ -45,4 +45,8 @@ public abstract class MyScreen extends GUI {
     public void dispose() {
         super.dispose();
     }
+
+    public Game getGame() {
+        return game;
+    }
 }
