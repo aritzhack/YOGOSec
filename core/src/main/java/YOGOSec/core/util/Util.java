@@ -9,11 +9,11 @@ import com.badlogic.gdx.Gdx;
  */
 public class Util {
 
-    public static boolean isAndroid(){
+    public static boolean isAndroid() {
         return Gdx.app.getType() == Application.ApplicationType.Android;
     }
 
-    public static boolean isDesktop(){
+    public static boolean isDesktop() {
         return Gdx.app.getType() == Application.ApplicationType.Desktop;
     }
 }

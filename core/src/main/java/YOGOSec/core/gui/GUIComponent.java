@@ -114,6 +114,6 @@ public abstract class GUIComponent implements InputListener {
     }
 
     public void dispose() {
-        
+
     }
 }

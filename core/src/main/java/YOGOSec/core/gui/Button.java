@@ -89,7 +89,7 @@ public class Button extends GUIComponent {
     }
 
     public Texture getTexture(Color fill, Color border) {
-        Pixmap pixmap = new Pixmap((int) this.getWidth(), (int)this.getHeight(), Pixmap.Format.RGBA8888);
+        Pixmap pixmap = new Pixmap((int) this.getWidth(), (int) this.getHeight(), Pixmap.Format.RGBA8888);
 
         final int MARGIN = 2;
 
