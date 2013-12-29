@@ -15,6 +15,10 @@ public abstract class MyScreen extends GUI {
     protected final OrthographicCamera camera;
     protected int width, height;
 
+    public MyScreen(Game game) {
+        this(game, new OrthographicCamera());
+    }
+
     public MyScreen(Game game, OrthographicCamera camera) {
         this.game = game;
         this.camera = camera;
