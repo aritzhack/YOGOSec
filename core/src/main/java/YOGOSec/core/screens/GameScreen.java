@@ -1,10 +1,8 @@
 package YOGOSec.core.screens;
 
 import YOGOSec.core.Game;
-import YOGOSec.core.gui.Button;
-import YOGOSec.core.gui.GUIComponent;
-import YOGOSec.core.gui.IActionListener;
-import YOGOSec.core.util.Rectanglef;
+import YOGOSec.core.gui.GameButton;
+import YOGOSec.core.util.Log;
 
 /**
  * @author Aritz Lopez
@@ -12,12 +10,15 @@ import YOGOSec.core.util.Rectanglef;
  */
 public class GameScreen extends MyScreen {
 
-    private final int xSquares, ySquares;
+    public static final int MARGIN = 10;
+    public final int xSquares, ySquares;
+    public final int SQUARE_SIZE;
 
     public GameScreen(Game game, int xSquares, int ySquares) {
         super(game);
         this.xSquares = xSquares;
         this.ySquares = ySquares;
+        this.SQUARE_SIZE = Math.min((this.game.getWidth() - (xSquares+1) * MARGIN) / xSquares, (this.game.getHeight() - (ySquares+1) * MARGIN) / ySquares);
 
         this.init();
     }
@@ -25,7 +26,7 @@ public class GameScreen extends MyScreen {
     private void init() {
         for (int x = 0; x < this.xSquares; x++) {
             for (int y = 0; y < this.ySquares; y++) {
-                this.addComponent(new Button(GameScreen.getButtonBounds(x, y), "", new ButtonListener(x, y)));
+                this.addComponent(new GameButton(this, x, y));
             }
         }
     }
@@ -38,28 +39,8 @@ public class GameScreen extends MyScreen {
 
     }
 
-    private static Rectanglef getButtonBounds(int x, int y) {
-        return null; // TODO Get bounds
-    }
-
-    private void buttonClicked(int x, int y) {
-
-    }
-
-    private class ButtonListener implements IActionListener {
-
-        private final int x;
-        private final int y;
-
-        public ButtonListener(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public void actionPerformed(GUIComponent sender) {
-            GameScreen.this.buttonClicked(this.x, this.y);
-        }
+    public void buttonClicked(int x, int y) {
+        Log.log("Button (" + x + ", " + y + ") clicked!");
     }
 
 }
