@@ -8,6 +8,7 @@ import YOGOSec.core.util.Util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.google.common.base.Strings;
 
 /**
  * @author Aritz Lopez
@@ -33,7 +34,7 @@ public class Button extends GUIComponent {
     public void render(Render render) {
         super.render(render);
         render.draw(this.pressed ? this.texturePressed : this.hovered && !Util.isAndroid() ? this.textureHovered : this.textureNormal, this.bounds.getX(), this.bounds.getY());
-        render.drawBigCenteredString(this.text, (int) (this.bounds.getX() + (this.bounds.getWidth() / 2)), (int) (this.bounds.getY() + (this.bounds.getHeight() / 2)));
+        if(!Strings.isNullOrEmpty(this.text)) render.drawBigCenteredString(this.text, (int) (this.bounds.getX() + (this.bounds.getWidth() / 2)), (int) (this.bounds.getY() + (this.bounds.getHeight() / 2)));
     }
 
     @Override

@@ -35,7 +35,7 @@ public abstract class GUIComponent implements InputListener {
     protected void updateBounds() {
         if (this.absolute) {
             if (this.bounds == null) this.bounds = this.relativeBounds;
-            else return;
+            return;
         }
 
         final int gameWidth = Game.INSTANCE.getRender().getWidth();
