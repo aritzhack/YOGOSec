@@ -6,6 +6,7 @@ package YOGOSec.core.util;
  */
 public class Point2f implements Point<Float> {
 
+    public static final Point2f ORIGIN = new Point2f(0, 0);
     private final float x, y;
 
     public Point2f(float x, float y) {

@@ -6,6 +6,7 @@ package YOGOSec.core.util;
  */
 public class Point2i implements Point<Integer> {
 
+    public static final Point2i ORIGIN = new Point2i(0, 0);
     private final int x, y;
 
     public Point2i(int x, int y) {
