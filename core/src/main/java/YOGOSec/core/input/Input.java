@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 
 /**
- * Utility class to help with event-driven input processing
+ * Utility class to help with event-driven input processing.
  * @author Aritz Lopez
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
@@ -58,10 +58,10 @@ public class Input implements InputProcessor {
     }
 
     /**
-     * Unprojects the coordinates of a point from being screen-coordinates to being game-coordinates
-     * @param x The x screen coordinate
-     * @param y The y screen coordinate
-     * @return A vector2i representing the game-coordinates
+     * Unprojects the coordinates of a point from being screen-coordinates to being game-coordinates.
+     * @param x The x screen coordinate.
+     * @param y The y screen coordinate.
+     * @return A vector2i representing the game-coordinates.
      */
     public Vector2i unproject(int x, int y) {
         Vector3 vector3 = new Vector3(x, y, 0);
