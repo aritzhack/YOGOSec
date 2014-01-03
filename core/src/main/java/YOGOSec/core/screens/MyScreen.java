@@ -27,7 +27,7 @@ public abstract class MyScreen extends GUI {
         this.resize(this.width, this.height);
     }
 
-    public void resize(int width, int height) {
+    public final void resize(int width, int height) {
         this.camera.setToOrtho(false, width, height);
         this.width = width;
         this.height = height;
@@ -48,5 +48,13 @@ public abstract class MyScreen extends GUI {
 
     public Game getGame() {
         return game;
+    }
+
+    public void onOpening(MyScreen oldScreen) {
+
+    }
+
+    public void onClosing(MyScreen newScreen) {
+
     }
 }

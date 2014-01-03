@@ -6,11 +6,13 @@ import YOGOSec.core.render.Render;
 import YOGOSec.core.screens.MainMenuScreen;
 import YOGOSec.core.screens.MyScreen;
 import YOGOSec.core.util.Log;
+import YOGOSec.core.util.Util;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 
 public class Game implements ApplicationListener {
     public static final Game INSTANCE;
+    public Proxy proxy;
 
     static {
         INSTANCE = new Game();
@@ -31,6 +33,7 @@ public class Game implements ApplicationListener {
 
     @Override
     public void create() {
+        if(Util.DEUBG) Log.setLevel(Log.Level.DEBUG);
         this.render = new Render();
         this.setScreen(new MainMenuScreen(this));
 
@@ -76,7 +79,11 @@ public class Game implements ApplicationListener {
     }
 
     public void setScreen(MyScreen screen) {
+        if(this.screen != null) this.screen.onClosing(screen);
+        MyScreen temp = this.screen;
         this.screen = screen;
+        this.screen.onOpening(temp);
+        if(temp != null) temp.dispose();
     }
 
     public int getWidth() {
@@ -85,5 +92,13 @@ public class Game implements ApplicationListener {
 
     public int getHeight() {
         return this.render.getHeight();
+    }
+
+    public Proxy getProxy() {
+        return this.proxy;
+    }
+
+    public void setProxy(Proxy proxy) {
+        this.proxy = proxy;
     }
 }

@@ -16,7 +16,7 @@ public class Rectanglef implements Rectangle<Float> {
         this.height = height;
     }
 
-    public Rectanglef(Point2f p1, Point2f p2) {
+    public Rectanglef(Vector2f p1, Vector2f p2) {
         this.x = p1.getX();
         this.y = p1.getY();
         this.width = p2.getX() - p1.getX();
@@ -59,12 +59,12 @@ public class Rectanglef implements Rectangle<Float> {
     }
 
     @Override
-    public boolean contains(Point<? extends Number> point, boolean yUp) {
+    public boolean contains(Vector<? extends Number> point, boolean yUp) {
         return this.contains(point.getX().floatValue(), point.getY().floatValue(), yUp);
     }
 
     @Override
-    public boolean contains(Point<? extends Number> point) {
+    public boolean contains(Vector<? extends Number> point) {
         return this.contains(point, false);
     }
 
@@ -77,6 +77,11 @@ public class Rectanglef implements Rectangle<Float> {
     @Override
     public boolean contains(Float x, Float y) {
         return this.contains(x, y, false);
+    }
+
+    @Override
+    public Rectangle<Float> toPositive() {
+        return new Rectanglef(Math.abs(this.getX()), Math.abs(this.getY()), Math.abs(this.getWidth()), Math.abs(this.getHeight()));
     }
 
     public Float getWidth() {
@@ -104,6 +109,6 @@ public class Rectanglef implements Rectangle<Float> {
 
     @Override
     public String toString() {
-        return "(" + this.x + ", " + this.width + ") " + this.width + "x" + this.height;
+        return "(" + this.x + ", " + this.y + ") " + this.width + "x" + this.height;
     }
 }

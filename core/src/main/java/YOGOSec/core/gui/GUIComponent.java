@@ -2,9 +2,9 @@ package YOGOSec.core.gui;
 
 import YOGOSec.core.Game;
 import YOGOSec.core.render.Render;
-import YOGOSec.core.util.Point2i;
 import YOGOSec.core.util.Rectangle;
 import YOGOSec.core.util.Rectanglef;
+import YOGOSec.core.util.Vector2i;
 
 /**
  * @author Aritz Lopez
@@ -13,23 +13,21 @@ import YOGOSec.core.util.Rectanglef;
 public abstract class GUIComponent implements InputListener {
 
     protected final boolean centerX, centerY, relativeWidth, relativeHeight, absolute;
-    protected Rectangle<Float> relativeBounds;
+    private Rectangle<Float> relativeBounds;
     protected Rectangle<Float> bounds;
 
     public GUIComponent(Rectanglef bounds) {
         this.relativeBounds = bounds;
 
-        this.centerX = this.relativeBounds.getX() < 0;
-        this.centerY = this.relativeBounds.getY() < 0;
-        this.relativeWidth = this.relativeBounds.getWidth() < 0;
-        this.relativeHeight = this.relativeBounds.getHeight() < 0;
+        this.centerX = bounds.getX() < 0 || bounds.getX() == -0f;
+        this.centerY = bounds.getY() < 0 || bounds.getY() == -0f;
+        this.relativeWidth = bounds.getWidth() < 0 || bounds.getWidth() == -0f;
+        this.relativeHeight = bounds.getHeight() < 0 || bounds.getHeight() == -0f;
 
         this.absolute = !(centerX || centerY || relativeWidth || relativeHeight);
 
-        if (!this.absolute) {
-            this.relativeBounds = this.relativeBounds.setPos(Math.abs(this.relativeBounds.getX()), Math.abs(this.relativeBounds.getY()));
-            this.relativeBounds = this.relativeBounds.setSize(Math.abs(this.relativeBounds.getWidth()), Math.abs(this.relativeBounds.getHeight()));
-        }
+        if (!this.absolute) this.relativeBounds = bounds.toPositive();
+        else this.relativeBounds = bounds;
 
         this.updateBounds();
     }
@@ -66,22 +64,22 @@ public abstract class GUIComponent implements InputListener {
     }
 
     @Override
-    public boolean touchDown(Point2i point, int pointer, int button) {
+    public boolean touchDown(Vector2i point, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchUp(Point2i point, int pointer, int button) {
+    public boolean touchUp(Vector2i point, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(Point2i point, int pointer) {
+    public boolean touchDragged(Vector2i point, int pointer) {
         return false;
     }
 
     @Override
-    public boolean mouseMoved(Point2i point) {
+    public boolean mouseMoved(Vector2i point) {
         return false;
     }
 

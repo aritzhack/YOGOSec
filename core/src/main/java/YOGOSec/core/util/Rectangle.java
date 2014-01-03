@@ -4,7 +4,7 @@ package YOGOSec.core.util;
  * @author Aritz Lopez
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public interface Rectangle<T> extends Point<T> {
+public interface Rectangle<T> extends Vector<T> {
 
     public T getWidth();
 
@@ -24,12 +24,14 @@ public interface Rectangle<T> extends Point<T> {
 
     public Rectangle<T> setPos(T x, T y);
 
-    public boolean contains(Point<? extends Number> point, boolean yDown);
+    public boolean contains(Vector<? extends Number> point, boolean yDown);
 
-    public boolean contains(Point<? extends Number> point);
+    public boolean contains(Vector<? extends Number> point);
 
     public boolean contains(T px, T py, boolean yDown);
 
     public boolean contains(T px, T py);
+
+    public Rectangle<T> toPositive();
 
 }

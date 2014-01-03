@@ -12,6 +12,7 @@ public class GameActivity extends AndroidApplication {
         super.onCreate(savedInstanceState);
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         config.useGL20 = true;
+        Game.INSTANCE.setProxy(new AndroidProxy(Game.INSTANCE));
         initialize(Game.INSTANCE, config);
     }
 }
