@@ -1,7 +1,7 @@
 package YOGOSec.core.input;
 
 import YOGOSec.core.Game;
-import YOGOSec.core.util.Point2i;
+import YOGOSec.core.util.Vector2i;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 
@@ -56,9 +56,9 @@ public class Input implements InputProcessor {
         return this.game.getScreen().scrolled(amount);
     }
 
-    public Point2i unproject(int x, int y) {
+    public Vector2i unproject(int x, int y) {
         Vector3 vector3 = new Vector3(x, y, 0);
         this.game.getRender().getCamera().unproject(vector3);
-        return new Point2i((int) vector3.x, (int) vector3.y);
+        return new Vector2i((int) vector3.x, (int) vector3.y);
     }
 }

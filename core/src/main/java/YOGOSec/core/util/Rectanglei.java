@@ -16,7 +16,7 @@ public class Rectanglei implements Rectangle<Integer> {
         this.height = height;
     }
 
-    public Rectanglei(Point2i p1, Point2i p2) {
+    public Rectanglei(Vector2i p1, Vector2i p2) {
         this.x = p1.getX();
         this.y = p1.getY();
         this.width = p2.getX() - p1.getX();
@@ -57,12 +57,12 @@ public class Rectanglei implements Rectangle<Integer> {
     }
 
     @Override
-    public boolean contains(Point<? extends Number> point, boolean yDown) {
+    public boolean contains(Vector<? extends Number> point, boolean yDown) {
         return this.contains(point.getX().intValue(), point.getY().intValue(), yDown);
     }
 
     @Override
-    public boolean contains(Point<? extends Number> point) {
+    public boolean contains(Vector<? extends Number> point) {
         return this.contains(point, false);
     }
 
@@ -75,6 +75,11 @@ public class Rectanglei implements Rectangle<Integer> {
     @Override
     public boolean contains(Integer px, Integer py) {
         return this.contains(px, py, false);
+    }
+
+    @Override
+    public Rectangle<Integer> toPositive() {
+        return new Rectanglei(Math.abs(this.getX()), Math.abs(this.getY()), Math.abs(this.getWidth()), Math.abs(this.getHeight()));
     }
 
     @Override

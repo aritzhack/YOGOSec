@@ -1,6 +1,7 @@
 package YOGOSec.core.gui;
 
 import YOGOSec.core.render.Render;
+import YOGOSec.core.util.Log;
 import YOGOSec.core.util.Rectanglef;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -36,7 +37,7 @@ public class ProgressBar extends GUIComponent {
     }
 
     private void update() {
-
+        if(this.min != -1) Log.debug(this.getBounds());
         this.pixmap.setColor(fill);
         this.pixmap.fillRectangle(MARGIN, MARGIN, (int) (getWidth() - MARGIN * 2), (int) (getHeight() - MARGIN * 2));
 

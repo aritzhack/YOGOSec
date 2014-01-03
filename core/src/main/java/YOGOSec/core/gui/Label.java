@@ -1,7 +1,7 @@
 package YOGOSec.core.gui;
 
 import YOGOSec.core.render.Render;
-import YOGOSec.core.util.Point2f;
+import YOGOSec.core.util.Vector2f;
 import YOGOSec.core.util.Rectanglef;
 
 /**
@@ -13,11 +13,11 @@ public class Label extends GUIComponent {
     private String text;
     private boolean bigFont;
 
-    public Label(Point2f point2, String text) {
+    public Label(Vector2f point2, String text) {
         this(point2, text, false);
     }
 
-    public Label(Point2f point2, String text, boolean bigFont) {
+    public Label(Vector2f point2, String text, boolean bigFont) {
         super(new Rectanglef(point2, point2));
         this.text = text;
         this.bigFont = bigFont;

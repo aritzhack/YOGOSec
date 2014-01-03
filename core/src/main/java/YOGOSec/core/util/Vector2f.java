@@ -4,18 +4,18 @@ package YOGOSec.core.util;
  * @author Aritz Lopez
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class Point2f implements Point<Float> {
+public class Vector2f implements Vector<Float> {
 
-    public static final Point2f ORIGIN = new Point2f(0, 0);
+    public static final Vector2f ORIGIN = new Vector2f(0, 0);
     private final float x, y;
 
-    public Point2f(float x, float y) {
+    public Vector2f(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    public Point2f translate(float dx, float dy) {
-        return new Point2f(this.x + dx, this.y + dy);
+    public Vector2f translate(float dx, float dy) {
+        return new Vector2f(this.x + dx, this.y + dy);
     }
 
     public Float getY() {
@@ -27,13 +27,13 @@ public class Point2f implements Point<Float> {
     }
 
     @Override
-    public Point2f setX(Float x) {
-        return new Point2f(x, this.y);
+    public Vector2f setX(Float x) {
+        return new Vector2f(x, this.y);
     }
 
     @Override
-    public Point2f setY(Float y) {
-        return new Point2f(this.x, y);
+    public Vector2f setY(Float y) {
+        return new Vector2f(this.x, y);
     }
 
     @Override

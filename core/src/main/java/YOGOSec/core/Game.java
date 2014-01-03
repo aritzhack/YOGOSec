@@ -6,6 +6,7 @@ import YOGOSec.core.render.Render;
 import YOGOSec.core.screens.MainMenuScreen;
 import YOGOSec.core.screens.MyScreen;
 import YOGOSec.core.util.Log;
+import YOGOSec.core.util.Util;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 
@@ -32,6 +33,7 @@ public class Game implements ApplicationListener {
 
     @Override
     public void create() {
+        if(Util.DEUBG) Log.setLevel(Log.Level.DEBUG);
         this.render = new Render();
         this.setScreen(new MainMenuScreen(this));
 

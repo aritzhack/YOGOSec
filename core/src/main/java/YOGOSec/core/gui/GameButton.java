@@ -9,28 +9,7 @@ import YOGOSec.core.util.Rectanglef;
  */
 public class GameButton extends Button {
 
-    private static class GameButtonListener implements IActionListener {
-
-        private final GameScreen screen;
-        private final int x;
-        private final int y;
-        private ButtonState state = ButtonState.NORMAL;
-
-        public GameButtonListener(GameScreen screen, int x, int y) {
-            this.screen = screen;
-            this.x = x;
-            this.y = y;
-        }
-
-        public void setState(ButtonState state) {
-            this.state = state;
-        }
-
-        @Override
-        public void actionPerformed(GUIComponent sender) {
-            this.screen.buttonClicked(x, y, this.state);
-        }
-    }
+    private ButtonState state = ButtonState.NORMAL;
 
     public GameButton(GameScreen screen, int x, int y) {
         super(GameButton.getButtonBounds(screen, x, y), "", new GameButtonListener(screen, x, y));
@@ -45,7 +24,34 @@ public class GameButton extends Button {
                 screen.squareSize);
     }
 
+    public ButtonState getState() {
+        return state;
+    }
+
+    public void setState(ButtonState state) {
+        this.state = state;
+    }
+
     public static enum ButtonState {
         NORMAL, LIT, UPGRADE
+    }
+
+    private static class GameButtonListener implements IActionListener {
+
+        private final GameScreen screen;
+        private final int x;
+        private final int y;
+
+
+        public GameButtonListener(GameScreen screen, int x, int y) {
+            this.screen = screen;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public void actionPerformed(GUIComponent sender) {
+            this.screen.buttonClicked(x, y, (GameButton) sender);
+        }
     }
 }
