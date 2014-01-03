@@ -127,6 +127,7 @@ public class Log {
 
     /**
      * Returns the logging level currently set. If it is not equal to one of the defaults (those in {@link com.badlogic.gdx.Application}), {@code null} will be returned
+     *
      * @return the logging level currently set
      */
     public static Level getLevel() {
@@ -138,6 +139,7 @@ public class Log {
 
     /**
      * Sets the logging level
+     *
      * @param level The logging level to be set
      */
     public static void setLevel(Level level) {
