@@ -3,7 +3,6 @@ package YOGOSec.core.screens;
 import YOGOSec.core.Game;
 import YOGOSec.core.gui.GUI;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 
 /**
  * @author Aritz Lopez
