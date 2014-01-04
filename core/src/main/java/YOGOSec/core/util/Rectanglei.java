@@ -57,12 +57,12 @@ public class Rectanglei implements Rectangle<Integer> {
     }
 
     @Override
-    public boolean contains(Vector<? extends Number> point, boolean yDown) {
-        return this.contains(point.getX().intValue(), point.getY().intValue(), yDown);
+    public boolean contains(Vector<? extends Integer> point, boolean yDown) {
+        return this.contains(point.getX(), point.getY(), yDown);
     }
 
     @Override
-    public boolean contains(Vector<? extends Number> point) {
+    public boolean contains(Vector<? extends Integer> point) {
         return this.contains(point, false);
     }
 

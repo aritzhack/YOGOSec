@@ -1,10 +1,11 @@
 package YOGOSec.core.util;
 
 /**
+ * Utility interface that sets what a Rectangle should be like
  * @author Aritz Lopez
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public interface Rectangle<T> extends Vector<T> {
+public interface Rectangle<T extends Number> extends Vector<T> {
 
     public T getWidth();
 
@@ -24,9 +25,9 @@ public interface Rectangle<T> extends Vector<T> {
 
     public Rectangle<T> setPos(T x, T y);
 
-    public boolean contains(Vector<? extends Number> point, boolean yDown);
+    public boolean contains(Vector<? extends T> point, boolean yDown);
 
-    public boolean contains(Vector<? extends Number> point);
+    public boolean contains(Vector<? extends T> point);
 
     public boolean contains(T px, T py, boolean yDown);
 

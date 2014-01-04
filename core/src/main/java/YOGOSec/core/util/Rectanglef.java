@@ -59,12 +59,12 @@ public class Rectanglef implements Rectangle<Float> {
     }
 
     @Override
-    public boolean contains(Vector<? extends Number> point, boolean yUp) {
-        return this.contains(point.getX().floatValue(), point.getY().floatValue(), yUp);
+    public boolean contains(Vector<? extends Float> point, boolean yUp) {
+        return this.contains(point.getX(), point.getY(), yUp);
     }
 
     @Override
-    public boolean contains(Vector<? extends Number> point) {
+    public boolean contains(Vector<? extends Float> point) {
         return this.contains(point, false);
     }
 
