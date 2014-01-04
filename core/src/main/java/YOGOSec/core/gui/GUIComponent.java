@@ -18,10 +18,10 @@ public abstract class GUIComponent implements InputListener {
     public GUIComponent(Rectanglef bounds) {
         this.relativeBounds = bounds;
 
-        this.centerX = bounds.getX() < 0 || bounds.getX() == -0f;
-        this.centerY = bounds.getY() < 0 || bounds.getY() == -0f;
-        this.relativeWidth = bounds.getWidth() < 0 || bounds.getWidth() == -0f;
-        this.relativeHeight = bounds.getHeight() < 0 || bounds.getHeight() == -0f;
+        this.centerX = bounds.getX() < 0;
+        this.centerY = bounds.getY() < 0;
+        this.relativeWidth = bounds.getWidth() < 0;
+        this.relativeHeight = bounds.getHeight() < 0;
 
         this.absolute = !(centerX || centerY || relativeWidth || relativeHeight);
 
