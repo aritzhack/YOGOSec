@@ -20,4 +20,9 @@ public class DesktopProxy implements Proxy {
     public void setResizable(boolean resizable) {
         Display.setResizable(resizable);
     }
+
+    @Override
+    public boolean isDebug() {
+        return System.getProperty("debug") != null;
+    }
 }

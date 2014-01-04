@@ -25,6 +25,4 @@ public class Util {
         double rounder = Math.pow(10, decimalPlaces);
         return Math.round(value*rounder) / rounder;
     }
-
-    public static final boolean DEUBG = System.getProperty("debug") != null;
 }

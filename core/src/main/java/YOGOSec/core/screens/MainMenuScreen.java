@@ -36,9 +36,9 @@ public class MainMenuScreen extends MyScreen {
 
     public MainMenuScreen(Game game) {
         super(game);
-        this.addComponent(this.progressBar = new ProgressBar(new Rectanglef(-.5f, 0f, -1f, 20f), -1f, 1f, 0f)); // Sin function goes from -1 to 1
+        this.addComponent(this.progressBar = new ProgressBar(new Rectanglef(-.5f, 0f, -1f, -.05f), -1f, 1f, 0f)); // Sin function goes from -1 to 1
         this.addComponent(new Button(new Rectanglef(-0.5f, -0.5f, 200f, 50f), "Hola", this.startGame));
-        if (Util.DEUBG) {
+        if (this.game.getProxy().isDebug()) {
             this.addComponent(this.label = new Label(new Vector2f(0, 50), ""));
             this.addComponent(new Label(new Vector2f(0, 70), debug2));
         }
@@ -57,8 +57,8 @@ public class MainMenuScreen extends MyScreen {
     public void onScreenResized(int width, int height) {
         super.onScreenResized(width, height);
         if (!init) return;
-        if (Util.DEUBG) {
-            this.gameScreen = new GameScreen(this.game, new Vector2i(X_SQUARES, Y_SQUARES));
+        this.gameScreen = new GameScreen(this.game, new Vector2i(X_SQUARES, Y_SQUARES));
+        if (this.game.getProxy().isDebug()) {
             this.label.setText(this.getDebugStringOne());
         }
     }

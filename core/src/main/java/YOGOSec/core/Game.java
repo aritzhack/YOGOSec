@@ -6,9 +6,9 @@ import YOGOSec.core.render.Render;
 import YOGOSec.core.screens.MainMenuScreen;
 import YOGOSec.core.screens.MyScreen;
 import YOGOSec.core.util.Log;
-import YOGOSec.core.util.Util;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.google.common.base.Preconditions;
 
 public class Game implements ApplicationListener {
     public static final Game INSTANCE;
@@ -33,7 +33,7 @@ public class Game implements ApplicationListener {
 
     @Override
     public void create() {
-        if(Util.DEUBG) Log.setLevel(Log.Level.DEBUG);
+        if(this.getProxy().isDebug()) Log.setLevel(Log.Level.DEBUG);
         this.render = new Render();
         this.setScreen(new MainMenuScreen(this));
 
@@ -79,6 +79,7 @@ public class Game implements ApplicationListener {
     }
 
     public void setScreen(MyScreen screen) {
+        Preconditions.checkArgument(screen != null, "Cannot switch to a null screen!");
         if(this.screen != null) this.screen.onClosing(screen);
         MyScreen temp = this.screen;
         this.screen = screen;

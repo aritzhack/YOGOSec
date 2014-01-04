@@ -7,4 +7,5 @@ package YOGOSec.core;
 public interface Proxy {
 
     public void setResizable(boolean resizable);
+    public boolean isDebug();
 }
