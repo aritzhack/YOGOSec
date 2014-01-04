@@ -4,7 +4,7 @@ import YOGOSec.core.Game;
 import YOGOSec.core.render.Render;
 import YOGOSec.core.util.Rectangle;
 import YOGOSec.core.util.Rectanglef;
-import YOGOSec.core.util.Vector2i;
+import YOGOSec.core.util.Vector2f;
 
 /**
  * @author Aritz Lopez
@@ -64,22 +64,22 @@ public abstract class GUIComponent implements InputListener {
     }
 
     @Override
-    public boolean touchDown(Vector2i point, int pointer, int button) {
+    public boolean touchDown(Vector2f point, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchUp(Vector2i point, int pointer, int button) {
+    public boolean touchUp(Vector2f point, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(Vector2i point, int pointer) {
+    public boolean touchDragged(Vector2f point, int pointer) {
         return false;
     }
 
     @Override
-    public boolean mouseMoved(Vector2i point) {
+    public boolean mouseMoved(Vector2f point) {
         return false;
     }
 

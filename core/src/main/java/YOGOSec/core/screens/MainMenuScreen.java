@@ -36,9 +36,9 @@ public class MainMenuScreen extends MyScreen {
 
     public MainMenuScreen(Game game) {
         super(game);
-        this.addComponent(this.progressBar = new ProgressBar(new Rectanglef(-.5f, 0f, -1f, 20), -1f, 1f, 0f)); // Sin function goes from -1 to 1
+        this.addComponent(this.progressBar = new ProgressBar(new Rectanglef(-.5f, 0f, -1f, 20f), -1f, 1f, 0f)); // Sin function goes from -1 to 1
         if (Util.DEUBG) {
-            this.addComponent(new Button(new Rectanglef(-0.5f, -0.5f, 200, 50), "Hola", this.startGame));
+            this.addComponent(new Button(new Rectanglef(-0.5f, -0.5f, 200f, 50f), "Hola", this.startGame));
             this.addComponent(this.label = new Label(new Vector2f(0, 50), ""));
             this.addComponent(new Label(new Vector2f(0, 70), debug2));
         }

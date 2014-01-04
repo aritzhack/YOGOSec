@@ -18,10 +18,10 @@ public class GameButton extends Button {
 
     private static Rectanglef getButtonBounds(GameScreen screen, int x, int y) {
         return new Rectanglef(
-                x * (screen.squareSize + screen.margins.getX()) + screen.margins.getX(),
-                y * (screen.squareSize + screen.margins.getY()) + screen.margins.getY(),
-                screen.squareSize,
-                screen.squareSize);
+                (float) x * (screen.squareSize + screen.margins.getX()) + screen.margins.getX(),
+                (float) y * (screen.squareSize + screen.margins.getY()) + screen.margins.getY(),
+                (float) screen.squareSize,
+                (float) screen.squareSize);
     }
 
     public ButtonState getState() {

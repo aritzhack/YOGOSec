@@ -2,6 +2,7 @@ package YOGOSec.core.gui;
 
 import YOGOSec.core.render.Render;
 import YOGOSec.core.util.Log;
+import YOGOSec.core.util.Vector2f;
 import YOGOSec.core.util.Vector2i;
 import com.google.common.collect.Lists;
 
@@ -32,25 +33,25 @@ public abstract class GUI implements InputListener {
     }
 
     @Override
-    public boolean touchDown(Vector2i point, int pointer, int button) {
+    public boolean touchDown(Vector2f point, int pointer, int button) {
         for (GUIComponent component : this.components) component.touchDown(point, pointer, button);
         return false;
     }
 
     @Override
-    public boolean touchUp(Vector2i point, int pointer, int button) {
+    public boolean touchUp(Vector2f point, int pointer, int button) {
         for (GUIComponent component : this.components) component.touchUp(point, pointer, button);
         return false;
     }
 
     @Override
-    public boolean touchDragged(Vector2i point, int pointer) {
+    public boolean touchDragged(Vector2f point, int pointer) {
         for (GUIComponent component : this.components) component.touchDragged(point, pointer);
         return false;
     }
 
     @Override
-    public boolean mouseMoved(Vector2i point) {
+    public boolean mouseMoved(Vector2f point) {
         for (GUIComponent component : this.components) component.mouseMoved(point);
         return false;
     }

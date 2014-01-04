@@ -18,7 +18,7 @@ public class Label extends GUIComponent {
     }
 
     public Label(Vector2f point2, String text, boolean bigFont) {
-        super(new Rectanglef(point2, point2));
+        super(new Rectanglef(point2.getX(), point2.getY(), 0f, 0f));
         this.text = text;
         this.bigFont = bigFont;
     }

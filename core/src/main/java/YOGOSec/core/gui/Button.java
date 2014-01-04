@@ -2,9 +2,9 @@ package YOGOSec.core.gui;
 
 import YOGOSec.core.Game;
 import YOGOSec.core.render.Render;
-import YOGOSec.core.util.Vector2i;
 import YOGOSec.core.util.Rectanglef;
 import YOGOSec.core.util.Util;
+import YOGOSec.core.util.Vector2f;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -38,7 +38,7 @@ public class Button extends GUIComponent {
     }
 
     @Override
-    public boolean touchDown(Vector2i point, int pointer, int button) {
+    public boolean touchDown(Vector2f point, int pointer, int button) {
         if (this.bounds.contains(point)) {
             this.pressed = true;
             this.pressPointer = pointer;
@@ -48,7 +48,7 @@ public class Button extends GUIComponent {
     }
 
     @Override
-    public boolean touchUp(Vector2i point, int pointer, int button) {
+    public boolean touchUp(Vector2f point, int pointer, int button) {
         if (this.bounds.contains(point)) {
             this.pressed = false;
             if (this.listener != null) listener.actionPerformed(this);
@@ -58,7 +58,7 @@ public class Button extends GUIComponent {
     }
 
     @Override
-    public boolean touchDragged(Vector2i point, int pointer) {
+    public boolean touchDragged(Vector2f point, int pointer) {
         if (pointer == this.pressPointer && !this.bounds.contains(point)) {
             this.hovered = false;
             this.pressed = false;
@@ -72,7 +72,7 @@ public class Button extends GUIComponent {
     }
 
     @Override
-    public boolean mouseMoved(Vector2i point) {
+    public boolean mouseMoved(Vector2f point) {
         return this.hovered = this.bounds.contains(point);
     }
 
