@@ -2,7 +2,6 @@ package YOGOSec.core.gui;
 
 import YOGOSec.core.Game;
 import YOGOSec.core.render.Render;
-import YOGOSec.core.util.Rectangle;
 import YOGOSec.core.util.Rectanglef;
 import YOGOSec.core.util.Vector2f;
 
@@ -13,8 +12,8 @@ import YOGOSec.core.util.Vector2f;
 public abstract class GUIComponent implements InputListener {
 
     protected final boolean centerX, centerY, relativeWidth, relativeHeight, absolute;
-    private Rectangle<Float> relativeBounds;
-    protected Rectangle<Float> bounds;
+    private Rectanglef relativeBounds;
+    protected Rectanglef bounds;
 
     public GUIComponent(Rectanglef bounds) {
         this.relativeBounds = bounds;
@@ -88,7 +87,7 @@ public abstract class GUIComponent implements InputListener {
         return false;
     }
 
-    public Rectangle<Float> getBounds() {
+    public Rectanglef getBounds() {
         return this.bounds;
     }
 

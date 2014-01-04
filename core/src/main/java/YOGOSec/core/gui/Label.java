@@ -1,8 +1,8 @@
 package YOGOSec.core.gui;
 
 import YOGOSec.core.render.Render;
-import YOGOSec.core.util.Vector2f;
 import YOGOSec.core.util.Rectanglef;
+import YOGOSec.core.util.Vector2f;
 
 /**
  * @author Aritz Lopez
@@ -34,12 +34,14 @@ public class Label extends GUIComponent {
     @Override
     public void render(Render render) {
         super.render(render);
-        if(bigFont) {
-            if(this.centerX || centerY) render.drawBigCenteredString(this.text, this.bounds.getX().intValue(), this.bounds.getY().intValue());
-            else render.drawBigString(this.text, this.bounds.getX().intValue(), this.bounds.getY().intValue());
+        if (bigFont) {
+            if (this.centerX || centerY)
+                render.drawBigCenteredString(this.text, (int) this.bounds.getX(), (int) this.bounds.getY());
+            else render.drawBigString(this.text, (int) this.bounds.getX(), (int) this.bounds.getY());
         } else {
-            if(this.centerX || this.centerY) render.drawCenteredString(this.text, this.bounds.getX().intValue(), this.bounds.getY().intValue());
-            else render.drawString(this.text, this.bounds.getX().intValue(), this.bounds.getY().intValue());
+            if (this.centerX || this.centerY)
+                render.drawCenteredString(this.text, (int) this.bounds.getX(), (int) this.bounds.getY());
+            else render.drawString(this.text, (int) this.bounds.getX(), (int) this.bounds.getY());
         }
     }
 }
